@@ -15,7 +15,7 @@ filters = {
 	settings = true
 }
 scopes = {
-	"last_search.AB59B443" = ""
+	"last_search.AB59B443" = "texture"
 }
 providers = {
 	asset = {
