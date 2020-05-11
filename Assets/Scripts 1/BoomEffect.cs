@@ -9,6 +9,8 @@ public class BoomEffect : MonoBehaviour
 
     public GameObject BulletMark;
 
+    public GameObject BoomEffectParticle;
+
     private void Start()
     {
         
@@ -17,20 +19,34 @@ public class BoomEffect : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Environment")
+        //if(collision.gameObject.tag == "Environment")
+        //{
+        //    contactPoint = collision.contacts[0];
+
+        //    GameObject _instanceOfBulletMark = Instantiate(BulletMark, contactPoint.point, Quaternion.LookRotation(contactPoint.normal)) as GameObject;
+
+        //    _instanceOfBulletMark.transform.Rotate(Vector3.right * 90);
+
+        //    _instanceOfBulletMark.transform.Translate(Vector3.up * 0.005f);
+
+        //    Destroy(_instanceOfBulletMark, 3.0f);
+
+        //    Destroy(this.gameObject);
+        //}
+
+        if (collision.gameObject.tag != "Player")
         {
             contactPoint = collision.contacts[0];
 
-            GameObject _instanceOfBulletMark = Instantiate(BulletMark, contactPoint.point, Quaternion.LookRotation(contactPoint.normal)) as GameObject;
+            GameObject _instanceOfBoomEffectParticle = Instantiate(BoomEffectParticle, contactPoint.point, Quaternion.LookRotation(contactPoint.normal)) as GameObject;
 
-            _instanceOfBulletMark.transform.Rotate(Vector3.right * 90);
-
-            _instanceOfBulletMark.transform.Translate(Vector3.up * 0.005f);
-
-            Destroy(_instanceOfBulletMark, 3.0f);
+            Destroy(_instanceOfBoomEffectParticle, 2.0f);
 
             Destroy(this.gameObject);
         }
+
+           
+
     }
 
 
