@@ -12,6 +12,8 @@ public class BoomEffect : MonoBehaviour
 
     public GameObject bomb;
 
+    
+
 
 
     public float expolisionRodius = 50f;
