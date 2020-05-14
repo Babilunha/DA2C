@@ -10,11 +10,13 @@ public class PlayerShooting : MonoBehaviour
     public Transform bulletSpawnPosition;
     public float projectileSpeed = 100f;
     public ParticleSystem muzzleFlash;
+    public AudioManager audioManager;
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        audioManager = audioManager.GetComponent<AudioManager>();
     }
 
     private void Update()
@@ -27,6 +29,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Shoot()
     {
+        audioManager.Play("Shoot");
         muzzleFlash.Play();
         //bulletSpawnPosition.rotation = gun.rotation;
         //GameObject _isntanceOfBullet = Instantiate(bullet, bulletSpawnPosition.position, Quaternion.identity) as GameObject;

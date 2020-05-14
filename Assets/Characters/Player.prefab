@@ -6019,6 +6019,7 @@ MonoBehaviour:
   bulletSpawnPosition: {fileID: 7242896796005610093}
   projectileSpeed: 50
   muzzleFlash: {fileID: 6020951112109415871}
+  audioManager: {fileID: 0}
 --- !u!1 &7548137585073430714
 GameObject:
   m_ObjectHideFlags: 0
