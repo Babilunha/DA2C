@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,13 +8,19 @@ public class BoomEffect : MonoBehaviour
 
     private ContactPoint contactPoint;
 
-    public GameObject BulletMark;
-
     public GameObject BoomEffectParticle;
+
+    public GameObject bomb;
+
+
+
+    public float expolisionRodius = 50f;
+    public float explosionForce = 100f;
+    public float explosionUpward = 10f;
 
     private void Start()
     {
-        
+     
     }
 
 
@@ -42,11 +49,29 @@ public class BoomEffect : MonoBehaviour
 
             Destroy(_instanceOfBoomEffectParticle, 2.0f);
 
+            simulateExplosionAround();
+
             Destroy(this.gameObject);
         }
 
            
 
+    }
+
+    private void simulateExplosionAround()
+    {
+        Vector3 expolisionPos = bomb.transform.position;
+
+        Collider[] colliders = Physics.OverlapSphere(expolisionPos, expolisionRodius);
+
+        foreach (Collider hit in colliders)
+        {
+            Rigidbody rb = hit.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddExplosionForce(explosionForce, expolisionPos, expolisionRodius, explosionUpward, ForceMode.Impulse);
+            }
+        }
     }
 
 

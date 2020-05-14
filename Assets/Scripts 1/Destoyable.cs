@@ -18,9 +18,11 @@ public class Destoyable : MonoBehaviour
     Vector3 cubesPivot;
     private ContactPoint contactPoint;
 
+    private Material color;
+
     private void Start()
     {
-        
+        color = this.GetComponent<Renderer>().material;
 
         cubesPivotDistance = cubeSize * cubesInRow / 2;
 
@@ -81,6 +83,8 @@ public class Destoyable : MonoBehaviour
     {
         GameObject piece;
         piece = GameObject.CreatePrimitive(PrimitiveType.Cube);
+
+        piece.GetComponent<Renderer>().material = color;
 
         piece.transform.position = transform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot;
         piece.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);

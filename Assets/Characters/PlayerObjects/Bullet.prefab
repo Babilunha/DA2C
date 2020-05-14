@@ -123,7 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676e8b0eaf5f3a140b49dee068953f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletMark: {fileID: 8985513979389632805, guid: 4c004a46d8df0e14c94f516c4852f928,
-    type: 3}
   BoomEffectParticle: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664,
     type: 3}
+  bomb: {fileID: 8883592828789141906}
+  expolisionRodius: 10
+  explosionForce: 50
+  explosionUpward: 1
