@@ -92,6 +92,6 @@ public class Destoyable : MonoBehaviour
         piece.AddComponent<Rigidbody>();
         piece.GetComponent<Rigidbody>().mass = cubeSize;
 
-        Destroy(piece, 5.0f);
+        Destroy(piece, 15.0f);
     }
 }

@@ -22,7 +22,7 @@ public class BoomEffect : MonoBehaviour
 
     private void Start()
     {
-     
+        Destroy(this.gameObject, 15f);
     }
 
 
@@ -54,9 +54,13 @@ public class BoomEffect : MonoBehaviour
             simulateExplosionAround();
 
             Destroy(this.gameObject);
+
+            
         }
 
-           
+        
+
+
 
     }
 

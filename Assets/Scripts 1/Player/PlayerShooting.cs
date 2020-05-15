@@ -14,8 +14,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+       
         audioManager = audioManager.GetComponent<AudioManager>();
     }
 
