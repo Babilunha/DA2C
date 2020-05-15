@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,9 +10,12 @@ public class GameManager : MonoBehaviour
 
     public static bool gameIsPaused;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
+        
         gameIsPaused = false;
         RemoveCursor();
         pauseMenu.SetActive(false);
@@ -50,8 +54,9 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
     }
 
-    void Resume()
+    public void Resume()
     {
+        
         RemoveCursor();
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
@@ -60,9 +65,21 @@ public class GameManager : MonoBehaviour
 
     void Pause()
     {
+        
         ActivateCursor();
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
         gameIsPaused = true;
+    }
+
+    public void loadMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void quitGame()
+    {
+        Application.Quit();
     }
 }
