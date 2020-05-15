@@ -2,13 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class AudioManager : MonoBehaviour
 {
 
     public Sound[] sounds;
-
-
+    private bool backgroundMaxBool;
 
     void Awake()
     {
@@ -25,7 +25,9 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        Play("Theme");
+
+        Play("backgroundMax");
+        backgroundMaxBool = true;
     }
 
     public void Play(string name)
@@ -34,17 +36,53 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(sounds, sound => sound.name == name);
 
         s.source.Play();
+
     }
 
     private void Update()
     {
-        if (GameManager.gameIsPaused)
+        if (MyGameManager.gameIsPaused)
         {
-            sounds[0].source.pitch = 0.5f;
+            getSound("backgroundMax").source.pitch = 0.5f;
+            getSound("backgroundLera").source.pitch = 0.5f;
         }
         else
         {
-            sounds[0].source.pitch = 1f;
+            getSound("backgroundMax").source.pitch = 1f;
+            getSound("backgroundLera").source.pitch = 1f;
         }
+
+        changeMusic();
+
+        
+    }
+
+    public Sound getSound(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        return s;
+    }
+
+    public void stopSound(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        s.source.Stop();
+    }
+
+    public void changeMusic()
+    {
+        if (Input.GetKeyDown(KeyCode.M) && backgroundMaxBool != true)
+        {
+            stopSound("backgroundLera");
+            Play("backgroundMax");
+            backgroundMaxBool = true;
+        } else if (Input.GetKeyDown(KeyCode.M) && backgroundMaxBool == true)
+        {
+            stopSound("backgroundMax");
+            Play("backgroundLera");
+            backgroundMaxBool = false;
+        }
+
+
     }
 }

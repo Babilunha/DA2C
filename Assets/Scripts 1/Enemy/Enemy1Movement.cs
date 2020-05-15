@@ -5,11 +5,11 @@ using UnityEngine;
 public class Enemy1Movement : MonoBehaviour
 {
     public float lookRadius = 10f;
-    
+
 
     //rigidbody of the enemy to perform physics on
     private new Rigidbody rigidbody;
-   
+
 
 
     private void Start()
