@@ -53,41 +53,48 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!MyGameManager.gameIsPaused)
+        {
+            Levitate();
+            Fly();
 
-        Levitate();
-        Fly();
+            //Calculate movement velocity as a 3D vector
+            float xMovement = Input.GetAxisRaw("Horizontal");
+            float zMovement = Input.GetAxisRaw("Vertical");
 
-        //Calculate movement velocity as a 3D vector
-        float xMovement = Input.GetAxisRaw("Horizontal");
-        float zMovement = Input.GetAxisRaw("Vertical");
+            Vector3 moveHorizontal = transform.right * xMovement; //1 0 0 
+            Vector3 moveVertical = transform.forward * zMovement; //0 0 1
 
-        Vector3 moveHorizontal = transform.right * xMovement; //1 0 0 
-        Vector3 moveVertical = transform.forward * zMovement; //0 0 1
+            //final mocemnet vector
+            velocity = (moveHorizontal + moveVertical).normalized * currentSpeed;
 
-        //final mocemnet vector
-        velocity = (moveHorizontal + moveVertical).normalized * currentSpeed;
+            //calculate rotation as a 3d vector (left and right)
+            float yRotation = Input.GetAxisRaw("Mouse X");
 
-        //calculate rotation as a 3d vector (left and right)
-        float yRotation = Input.GetAxisRaw("Mouse X");
-
-        rotation = new Vector3(0f, yRotation, 0f) * lookSensitivity;
+            rotation = new Vector3(0f, yRotation, 0f) * lookSensitivity;
 
 
-        //calculate camera as a 3d vector (left and right)
-        float xRotation = Input.GetAxisRaw("Mouse Y");
+            //calculate camera as a 3d vector (left and right)
+            float xRotation = Input.GetAxisRaw("Mouse Y");
 
-        rotationCameraX = xRotation * lookSensitivity;
+            rotationCameraX = xRotation * lookSensitivity;
+        }
+
+        
 
     }
 
 
     void FixedUpdate()
     {
-        PerformMovement();
-        PerformRotation();
+        if (!MyGameManager.gameIsPaused)
+        {
+            PerformMovement();
+            PerformRotation();
 
 
-        SpeedBoost();
+            SpeedBoost();
+        }
 
     }
 
