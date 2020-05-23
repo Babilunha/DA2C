@@ -1,27 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy1Movement : MonoBehaviour
 {
     public float lookRadius = 10f;
 
-
-    //rigidbody of the enemy to perform physics on
-    private new Rigidbody rigidbody;
+    Transform target;
+    NavMeshAgent agent;
 
 
 
     private void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        target = PlayerManager.instance.player.transform;
+        agent = GetComponent<NavMeshAgent>();
 
 
     }
 
     private void Update()
     {
-        //Gizmos.color = Color.red;
-        //Gizmos.DrawWireSphere(transform.position, lookRadius);
+        float distance = Vector3.Distance(target.position, transform.position);
+
+       
+          
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, lookRadius);
     }
 }

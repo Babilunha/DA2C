@@ -9,6 +9,8 @@ public class Destoyable : MonoBehaviour
     public float cubeSize = 5f;
     public int cubesInRow = 5;
 
+    public GameObject parentCube;
+
     public float expolisionRodius = 5f;
     public float explosionForce = 50f;
     public float explosionUpward = 0.4f;
@@ -22,6 +24,8 @@ public class Destoyable : MonoBehaviour
 
     private void Start()
     {
+        cubeSize = (parentCube.GetComponent<Renderer>().bounds.size.x)/5;
+
         color = this.GetComponent<Renderer>().material;
 
         cubesPivotDistance = cubeSize * cubesInRow / 2;
