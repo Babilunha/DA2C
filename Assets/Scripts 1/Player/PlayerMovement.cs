@@ -42,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
     //rigidbody of the player to perform physics on
     private new Rigidbody rigidbody;
 
+    public Joystick joystick; 
+
 
 
     private void Start()
@@ -59,8 +61,11 @@ public class PlayerMovement : MonoBehaviour
             Fly();
 
             //Calculate movement velocity as a 3D vector
-            float xMovement = Input.GetAxisRaw("Horizontal");
-            float zMovement = Input.GetAxisRaw("Vertical");
+            //float xMovement = Input.GetAxisRaw("Horizontal");
+            //float zMovkement = Input.GetAxisRaw("Vertical");
+            float xMovement = joystick.Horizontal;
+            float zMovement = joystick.Vertical;
+
 
             Vector3 moveHorizontal = transform.right * xMovement; //1 0 0 
             Vector3 moveVertical = transform.forward * zMovement; //0 0 1
